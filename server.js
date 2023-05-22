@@ -28,7 +28,7 @@ app.post('/paymentSubmit', (req, res) => {
         const cvvLength = isAmerican ? 4 : 3;
 
         if (cvvValue.length !== cvvLength) {
-            if (isAmex) {
+            if (isAmerican) {
                 console.log("Invalid CVV length. CVV for American Express cards must be 4 digits long.");
             } else {
                 console.log("Invalid CVV length. CVV for non-American Express cards must be 3 digits long.");
@@ -41,7 +41,21 @@ app.post('/paymentSubmit', (req, res) => {
         return true;
     }
 
+    function validateCardNumberLength(cardNumberValue) {
+        const cardNumberLength = cardNumberValue.length;
 
+        if (cardNumberLength < 16 || cardNumberLength > 19) {
+            console.log("Invalid card number length. The card number must be between 16 and 19 digits long.");
+            return false;
+        }
+
+        // Card number length is valid
+        console.log("Valid card number")
+        return true;
+    }
+
+
+    validateCardNumberLength(cardNumberValue);
     validateCVV(cvvValue, cardNumberValue);
 
     console.log(cardNumberValue)
