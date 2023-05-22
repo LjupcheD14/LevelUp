@@ -83,9 +83,29 @@ app.post('/paymentSubmit', (req, res) => {
     // Perform any necessary operations with the form data
     // ...
 
-    var parsedData1 = JSON.stringify(formData);
+    function validateForm(dateValue, cvvValue, cardNumberValue) {
+        const isExpiryDateValid = validateExpiryDate(dateValue);
+        const isCVVValid = validateCVV(cvvValue, cardNumberValue);
+        const isCardNumberLengthValid = validateCardNumberLength(cardNumberValue);
 
-    res.send(`EOEO ${parsedData1}`); // Send a response back to the client
+        return isExpiryDateValid && isCVVValid && isCardNumberLengthValid;
+    }
+
+
+    const isFormValid = validateForm(dateValue, cvvValue, cardNumberValue);
+
+    const paymentSuc = 'Success'
+    const paymentFal = 'Invalid'
+
+    if (isFormValid) {
+        res.status(200).send(`${paymentSuc}`);
+    } else {
+        res.status(200).send(`${paymentFal}`);
+    }
+
+    // var parsedData1 = JSON.stringify(formData);
+    //
+    // res.send(`EOEO ${parsedData1}`); // Send a response back to the client
 });
 
 

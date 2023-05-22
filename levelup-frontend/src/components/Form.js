@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 const FormExample = () => {
     const [date, setDate] = useState('');
     const [cvv, setCVV] = useState('');
     const [cardNumber, setCardNumber] = useState('');
-
+    const [statusce, setStatusce] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -16,11 +16,14 @@ const FormExample = () => {
             cardNumber: cardNumber
         };
 
+
+
         // Send the form data to the backend using Axios
         axios.post('http://localhost:8000/paymentSubmit', formData)
             .then((response) => {
                 console.log(response.data);
                 // Handle the response from the backend
+                setStatusce(response.data);
             })
             .catch((error) => {
                 console.error('Error submitting form:', error);
@@ -68,6 +71,7 @@ const FormExample = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            {statusce && <p>Status: {statusce}</p>}
         </div>
     );
 };
