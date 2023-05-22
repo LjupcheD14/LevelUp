@@ -23,7 +23,28 @@ app.post('/paymentSubmit', (req, res) => {
 
         console.log(dateValue);
         console.log(cvvValue);
-        console.log(cardNumberValue)
+    function validateCVV(cvvValue, cardNumberValue) {
+        const isAmerican = cardNumberValue.startsWith("34") || cardNumberValue.startsWith("37");
+        const cvvLength = isAmerican ? 4 : 3;
+
+        if (cvvValue.length !== cvvLength) {
+            if (isAmex) {
+                console.log("Invalid CVV length. CVV for American Express cards must be 4 digits long.");
+            } else {
+                console.log("Invalid CVV length. CVV for non-American Express cards must be 3 digits long.");
+            }
+            return false;
+        }
+
+        // CVV length is valid
+        console.log("Valid CVV")
+        return true;
+    }
+
+
+    validateCVV(cvvValue, cardNumberValue);
+
+    console.log(cardNumberValue)
     // Perform any necessary operations with the form data
     // ...
 
