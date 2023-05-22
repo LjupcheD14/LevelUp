@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 const FormExample = () => {
     const [date, setDate] = useState('');
@@ -7,8 +8,25 @@ const FormExample = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Perform form submission logic here
-        console.log('Form submitted:', date, cvv, cardNumber);
+
+        // Create an object with the form data
+        const formData = {
+            date: date,
+            cvv: cvv,
+            cardNumber: cardNumber
+        };
+
+        // Send the form data to the backend using Axios
+        axios.post('http://localhost:8000/paymentSubmit', formData)
+            .then((response) => {
+                console.log(response.data);
+                // Handle the response from the backend
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                // Handle the error
+            });
+
     };
 
     return (
