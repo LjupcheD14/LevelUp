@@ -12,10 +12,24 @@ app.post('/paymentSubmit', (req, res) => {
     const formData = req.body; // Access the form data from the request body
 
     console.log(formData);
+
+    var parsedData = JSON.stringify(formData)
+
+        var resultData = JSON.parse(parsedData);
+
+        var dateValue = resultData.date
+        var cvvValue = resultData.cvv;
+        var cardNumberValue = resultData.cardNumber
+
+        console.log(dateValue);
+        console.log(cvvValue);
+        console.log(cardNumberValue)
     // Perform any necessary operations with the form data
     // ...
 
-    res.send(`The data recevied is ${JSON.stringify(formData)}`); // Send a response back to the client
+    var parsedData1 = JSON.stringify(formData);
+
+    res.send(`EOEO ${parsedData1}`); // Send a response back to the client
 });
 
 

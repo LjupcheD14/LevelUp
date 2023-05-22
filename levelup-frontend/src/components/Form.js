@@ -36,7 +36,7 @@ const FormExample = () => {
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
                     <input
-                        type="text"
+                        type="date"
                         className="form-control"
                         id="date"
                         placeholder="Enter the date"
