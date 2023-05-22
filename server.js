@@ -23,6 +23,24 @@ app.post('/paymentSubmit', (req, res) => {
 
         console.log(dateValue);
         console.log(cvvValue);
+        console.log(cardNumberValue)
+
+    function validateExpiryDate(dateValue) {
+        const currentDate = new Date();
+        const expiryDate = new Date(dateValue);
+
+        if (expiryDate <= currentDate) {
+            console.log("Invalid expiry date. The expiry date must be after the current date.");
+            return false;
+        }
+
+        // Expiry date is valid
+        console.log("Valid date")
+        return true;
+    }
+
+
+
     function validateCVV(cvvValue, cardNumberValue) {
         const isAmerican = cardNumberValue.startsWith("34") || cardNumberValue.startsWith("37");
         const cvvLength = isAmerican ? 4 : 3;
@@ -35,23 +53,6 @@ app.post('/paymentSubmit', (req, res) => {
             }
             return false;
         }
-
-        function validateExpiryDate(dateValue) {
-            const currentDate = new Date();
-            const expiryDate = new Date(dateValue);
-
-            if (expiryDate <= currentDate) {
-                console.log("Invalid expiry date. The expiry date must be after the current date.");
-                return false;
-            }
-
-            // Expiry date is valid
-            console.log("Valid date")
-            return true;
-        }
-
-
-        validateExpiryDate(dateValue);
 
 
         // CVV length is valid
@@ -73,11 +74,12 @@ app.post('/paymentSubmit', (req, res) => {
         return true;
     }
 
-
-    validateCardNumberLength(cardNumberValue);
+    validateExpiryDate(dateValue);
     validateCVV(cvvValue, cardNumberValue);
+    validateCardNumberLength(cardNumberValue);
 
-    console.log(cardNumberValue)
+
+
     // Perform any necessary operations with the form data
     // ...
 
