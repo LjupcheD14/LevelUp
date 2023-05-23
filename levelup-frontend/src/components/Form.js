@@ -43,8 +43,8 @@ const FormExample = () => {
 
 
     return (
-        <div style={{width: '50%'}} className="container">
-            <h1 style={{textAlign: 'center'}}>LevelUp payment</h1>
+        <div style={{backgroundColor: '#eae9f9',border: '10px solid #3f3bc5', borderRadius: '25px', padding: '50px'}} className="container">
+            <h1 style={{textAlign: 'center', marginBottom: '10px'}}>LevelUp payment</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
@@ -55,6 +55,7 @@ const FormExample = () => {
                         placeholder="Enter the date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
+                        style={{width: '50%'}}
                     />
                 </div>
                 <div className="form-group">
@@ -66,6 +67,7 @@ const FormExample = () => {
                         placeholder="Enter the CVV"
                         value={cvv}
                         onChange={(e) => setCVV(e.target.value)}
+                        style={{width: '50%'}}
                     />
                 </div>
                 <div className="form-group">
@@ -77,6 +79,7 @@ const FormExample = () => {
                         placeholder="Enter the card number"
                         value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
+                        style={{width: '50%'}}
                     />
                 </div>
                 <div>
@@ -93,7 +96,7 @@ const FormExample = () => {
                         <li>The PAN (card number) must be between 16 and 19 digits long</li>
                     </ol>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button style={{backgroundColor: '#3f3bc5'}} type="submit" className="btn btn-primary">Submit</button>
             </form>
             {statusce && <p style={getStyle()}>{statusce} payment</p>}
         </div>
