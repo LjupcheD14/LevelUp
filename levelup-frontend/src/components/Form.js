@@ -32,6 +32,16 @@ const FormExample = () => {
 
     };
 
+    const getStyle = () => {
+        if (statusce === 'Successful') {
+            return { color: 'green' };
+        } else {
+            return { color: 'red' };
+        }
+    };
+
+
+
     return (
         <div className="container">
             <h1>Payment process example</h1>
@@ -71,7 +81,7 @@ const FormExample = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-            {statusce && <p>Status: {statusce}</p>}
+            {statusce && <p style={getStyle()}>{statusce} payment</p>}
         </div>
     );
 };

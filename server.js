@@ -94,7 +94,7 @@ app.post('/paymentSubmit', (req, res) => {
 
     const isFormValid = validateForm(dateValue, cvvValue, cardNumberValue);
 
-    const paymentSuc = 'Success'
+    const paymentSuc = 'Successful'
     const paymentFal = 'Invalid'
 
     if (isFormValid) {
