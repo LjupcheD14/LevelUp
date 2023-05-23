@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import styles from "levelup-frontend/src/style.css"
 
 const FormExample = () => {
     const [date, setDate] = useState('');
@@ -43,8 +44,8 @@ const FormExample = () => {
 
 
     return (
-        <div className="container">
-            <h1>Payment process example</h1>
+        <div className="container styles.container50">
+            <h1>LevelUp payment</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
@@ -78,6 +79,20 @@ const FormExample = () => {
                         value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
                     />
+                </div>
+                <div>
+                    <p>For a successful transaction, your payment details must meet the following conditions</p>
+                    <ol>
+                        <li>The expiry date of the credit card (year and month) must be AFTER present time</li>
+                        <li>
+                            The CVV (security code) of the credit card must be exactly 3 digits long
+                            <ul>
+                                <li>Unless it’s an American Express card, in which case the CVV must be exactly 4 digits long</li>
+                                <li>American Express are cards whose PAN (card numbers) starts with either “34” or “37”</li>
+                            </ul>
+                        </li>
+                        <li>The PAN (card number) must be between 16 and 19 digits long</li>
+                    </ol>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
