@@ -21,9 +21,9 @@ app.post('/paymentSubmit', (req, res) => {
         var cvvValue = resultData.cvv;
         var cardNumberValue = resultData.cardNumber
 
-        console.log(dateValue);
-        console.log(cvvValue);
-        console.log(cardNumberValue)
+        console.log("Date: ", dateValue);
+        console.log("CVV: ", cvvValue);
+        console.log("Card number: ", cardNumberValue)
 
     function validateExpiryDate(dateValue) {
         const currentDate = new Date();
@@ -74,9 +74,9 @@ app.post('/paymentSubmit', (req, res) => {
         return true;
     }
 
-    validateExpiryDate(dateValue);
-    validateCVV(cvvValue, cardNumberValue);
-    validateCardNumberLength(cardNumberValue);
+    // validateExpiryDate(dateValue);
+    // validateCVV(cvvValue, cardNumberValue);
+    // validateCardNumberLength(cardNumberValue);
 
 
 
