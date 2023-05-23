@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from "axios";
-import styles from "levelup-frontend/src/style.css"
 
 const FormExample = () => {
     const [date, setDate] = useState('');
@@ -44,8 +43,8 @@ const FormExample = () => {
 
 
     return (
-        <div className="container styles.container50">
-            <h1>LevelUp payment</h1>
+        <div style={{width: '50%'}} className="container">
+            <h1 style={{textAlign: 'center'}}>LevelUp payment</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
