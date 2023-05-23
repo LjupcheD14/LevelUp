@@ -74,14 +74,6 @@ app.post('/paymentSubmit', (req, res) => {
         return true;
     }
 
-    // validateExpiryDate(dateValue);
-    // validateCVV(cvvValue, cardNumberValue);
-    // validateCardNumberLength(cardNumberValue);
-
-
-
-    // Perform any necessary operations with the form data
-    // ...
 
     function validateForm(dateValue, cvvValue, cardNumberValue) {
         const isExpiryDateValid = validateExpiryDate(dateValue);
@@ -103,9 +95,6 @@ app.post('/paymentSubmit', (req, res) => {
         res.status(200).send(`${paymentFal}`);
     }
 
-    // var parsedData1 = JSON.stringify(formData);
-    //
-    // res.send(`EOEO ${parsedData1}`); // Send a response back to the client
 });
 
 
