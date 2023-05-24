@@ -33,19 +33,6 @@ const FormExample = () => {
         }
 
 
-        // Send the form data to the backend using Axios
-        // axios.post('http://localhost:8000/paymentSubmit', formData)
-        //     .then((response) => {
-        //         console.log(response.data);
-        //         // Handle the response from the backend
-        //         setStatusce(response.data);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error submitting form:', error);
-        //         // Handle the error
-        //     });
-
-
         axios.post('http://localhost:8000/dateSubmit', formDate)
             .then((response) => {
                 console.log(response.data);
