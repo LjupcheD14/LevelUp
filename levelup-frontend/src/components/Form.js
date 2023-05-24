@@ -1,11 +1,14 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 
 const FormExample = () => {
     const [date, setDate] = useState('');
     const [cvv, setCVV] = useState('');
     const [cardNumber, setCardNumber] = useState('');
-    const [statusce, setStatusce] = useState('');
+    const [statusDate, setStatusDate] = useState('');
+    const [statusCvv, setStatusCvv] = useState('');
+    const [statusCardNumber, setStatusCardNumber] = useState('');
+    const [finalStatus, setFinalStatus] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -16,14 +19,60 @@ const FormExample = () => {
             cardNumber: cardNumber
         };
 
+        const formDate = {
+            date: date
+        }
+
+        const formCVV = {
+            cvv: cvv,
+            cardNumber: cardNumber
+        }
+
+        const formCardNumber = {
+            cardNumber: cardNumber
+        }
 
 
         // Send the form data to the backend using Axios
-        axios.post('http://localhost:8000/paymentSubmit', formData)
+        // axios.post('http://localhost:8000/paymentSubmit', formData)
+        //     .then((response) => {
+        //         console.log(response.data);
+        //         // Handle the response from the backend
+        //         setStatusce(response.data);
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error submitting form:', error);
+        //         // Handle the error
+        //     });
+
+
+        axios.post('http://localhost:8000/dateSubmit', formDate)
             .then((response) => {
                 console.log(response.data);
                 // Handle the response from the backend
-                setStatusce(response.data);
+                setStatusDate(response.data)
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                // Handle the error
+            });
+
+        axios.post('http://localhost:8000/cvvSubmit', formCVV)
+            .then((response) => {
+                console.log(response.data);
+                // Handle the response from the backend
+                setStatusCvv(response.data)
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                // Handle the error
+            });
+
+        axios.post('http://localhost:8000/cardNumberSubmit', formCardNumber)
+            .then((response) => {
+                console.log(response.data);
+                // Handle the response from the backend
+                setStatusCardNumber(response.data)
             })
             .catch((error) => {
                 console.error('Error submitting form:', error);
@@ -32,18 +81,42 @@ const FormExample = () => {
 
     };
 
-    const getStyle = () => {
-        if (statusce === 'Successful') {
-            return { color: 'green' };
+    const styleStatusDate = () => {
+        if (statusDate === 'Valid date') {
+            return {color: 'green'}
         } else {
-            return { color: 'red' };
+            return {color: 'red'};
+        }
+    }
+
+    const styleStatusCvv = () => {
+        if (statusCvv === 'Valid CVV') {
+            return {color: 'green'}
+        } else {
+            return {color: 'red'};
+        }
+    }
+
+    const styleStatusCardNumber = () => {
+        if (statusCardNumber === 'Valid card number') {
+            return {color: 'green'}
+        } else {
+            return {color: 'red'};
+        }
+    }
+
+    const checkAllFunctions = () => {
+        if (styleStatusDate().color === 'green' && styleStatusCvv().color === 'green' && styleStatusCardNumber().color === 'green') {
+            return true;
+        } else {
+            return false;
         }
     };
 
 
-
     return (
-        <div style={{backgroundColor: '#eae9f9',border: '10px solid #3f3bc5', borderRadius: '25px', padding: '50px'}} className="container">
+        <div style={{backgroundColor: '#eae9f9', border: '10px solid #3f3bc5', borderRadius: '25px', padding: '50px'}}
+             className="container">
             <h1 style={{textAlign: 'center', marginBottom: '10px'}}>LevelUp payment</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -57,6 +130,7 @@ const FormExample = () => {
                         onChange={(e) => setDate(e.target.value)}
                         style={{width: '50%'}}
                     />
+                    {statusDate && <p style={styleStatusDate()}>{statusDate}</p>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">CVV(security code)</label>
@@ -68,7 +142,8 @@ const FormExample = () => {
                         value={cvv}
                         onChange={(e) => setCVV(e.target.value)}
                         style={{width: '50%'}}
-                    />
+                    />{statusCvv && <p style={styleStatusCvv()}>{statusCvv}</p>}
+
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Card number</label>
@@ -81,6 +156,7 @@ const FormExample = () => {
                         onChange={(e) => setCardNumber(e.target.value)}
                         style={{width: '50%'}}
                     />
+                    {statusCardNumber && <p style={styleStatusCardNumber()}>{statusCardNumber}</p>}
                 </div>
                 <div>
                     <p>For a successful transaction, your payment details must meet the following conditions</p>
@@ -89,8 +165,12 @@ const FormExample = () => {
                         <li>
                             The CVV (security code) of the credit card must be exactly 3 digits long
                             <ul>
-                                <li>Unless it’s an American Express card, in which case the CVV must be exactly 4 digits long</li>
-                                <li>American Express are cards whose PAN (card numbers) starts with either “34” or “37”</li>
+                                <li>Unless it’s an American Express card, in which case the CVV must be exactly 4 digits
+                                    long
+                                </li>
+                                <li>American Express are cards whose PAN (card numbers) starts with either “34” or
+                                    “37”
+                                </li>
                             </ul>
                         </li>
                         <li>The PAN (card number) must be between 16 and 19 digits long</li>
@@ -98,7 +178,10 @@ const FormExample = () => {
                 </div>
                 <button style={{backgroundColor: '#3f3bc5'}} type="submit" className="btn btn-primary">Submit</button>
             </form>
-            {statusce && <p style={getStyle()}>{statusce} payment</p>}
+            {checkAllFunctions() && (
+                <p style={{color: 'green', fontWeight: 'bold'}}>Your payment is successful</p>
+            )}
+
         </div>
     );
 };
