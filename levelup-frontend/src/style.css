@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 .resultText{
     color: green;
     font-weight: bold;
@@ -11,10 +13,17 @@
 .divH1{
     text-align: center;
     margin-bottom: 10px;
+    /*font-family: 'Open Sans', sans-serif;*/
 }
 .inputWidth{
     width: 50%;
 }
 .buttonSubmitColor{
     background-color: #3f3bc5;
+}
+.fontSans{
+    font-family: 'Open Sans', sans-serif;
+}
+.finalResultStyle{
+    margin-top: 20px;
 }

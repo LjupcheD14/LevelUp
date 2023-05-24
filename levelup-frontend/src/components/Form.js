@@ -108,39 +108,39 @@ const FormExample = () => {
                     <label htmlFor="name">Date:</label>
                     <input
                         type="date"
-                        className="form-control inputWidth"
+                        className="form-control inputWidth fontSans"
                         id="date"
                         placeholder="Enter the date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                     />
-                    {statusDate && <p style={styleStatusDate()}>{statusDate}</p>}
+                    {statusDate && <p className={"fontSans"} style={styleStatusDate()}>{statusDate}</p>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">CVV(security code)</label>
+                    <label htmlFor="email">CVV(security code):</label>
                     <input
                         type="number"
-                        className="form-control inputWidth"
+                        className="form-control inputWidth fontSans"
                         id="cvv"
                         placeholder="Enter the CVV"
                         value={cvv}
                         onChange={(e) => setCVV(e.target.value)}
-                    />{statusCvv && <p style={styleStatusCvv()}>{statusCvv}</p>}
+                    />{statusCvv && <p className={"fontSans"} style={styleStatusCvv()}>{statusCvv}</p>}
 
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Card number</label>
+                    <label htmlFor="email">Card number:</label>
                     <input
                         type="number"
-                        className="form-control inputWidth"
+                        className="form-control inputWidth fontSans"
                         id="cardNumber"
                         placeholder="Enter the card number"
                         value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
                     />
-                    {statusCardNumber && <p style={styleStatusCardNumber()}>{statusCardNumber}</p>}
+                    {statusCardNumber && <p className={"fontSans"} style={styleStatusCardNumber()}>{statusCardNumber}</p>}
                 </div>
-                <div>
+                <div className={"fontSans"}>
                     <p>For a successful transaction, your payment details must meet the following conditions</p>
                     <ol>
                         <li>The expiry date of the credit card (year and month) must be AFTER present time</li>
@@ -158,10 +158,10 @@ const FormExample = () => {
                         <li>The PAN (card number) must be between 16 and 19 digits long</li>
                     </ol>
                 </div>
-                <button type="submit" className="btn btn-primary buttonSubmitColor">Submit</button>
+                <button type="submit" className="btn btn-primary buttonSubmitColor fontSans">Submit</button>
             </form>
             {checkAllFunctions() && (
-                <p className={"resultText"}>Your payment is successful</p>
+                <p className={"resultText fontSans finalResultStyle"}>Your payment is successful</p>
             )}
 
         </div>
