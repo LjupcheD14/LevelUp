@@ -8,7 +8,6 @@ const FormExample = () => {
     const [statusDate, setStatusDate] = useState('');
     const [statusCvv, setStatusCvv] = useState('');
     const [statusCardNumber, setStatusCardNumber] = useState('');
-    const [finalStatus, setFinalStatus] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -102,20 +101,18 @@ const FormExample = () => {
 
 
     return (
-        <div style={{backgroundColor: '#eae9f9', border: '10px solid #3f3bc5', borderRadius: '25px', padding: '50px'}}
-             className="container">
-            <h1 style={{textAlign: 'center', marginBottom: '10px'}}>LevelUp payment</h1>
+        <div className="container divCustomContainer">
+            <h1 className={"divH1"}>LevelUp payment</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
                     <input
                         type="date"
-                        className="form-control"
+                        className="form-control inputWidth"
                         id="date"
                         placeholder="Enter the date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
-                        style={{width: '50%'}}
                     />
                     {statusDate && <p style={styleStatusDate()}>{statusDate}</p>}
                 </div>
@@ -123,12 +120,11 @@ const FormExample = () => {
                     <label htmlFor="email">CVV(security code)</label>
                     <input
                         type="number"
-                        className="form-control"
+                        className="form-control inputWidth"
                         id="cvv"
                         placeholder="Enter the CVV"
                         value={cvv}
                         onChange={(e) => setCVV(e.target.value)}
-                        style={{width: '50%'}}
                     />{statusCvv && <p style={styleStatusCvv()}>{statusCvv}</p>}
 
                 </div>
@@ -136,12 +132,11 @@ const FormExample = () => {
                     <label htmlFor="email">Card number</label>
                     <input
                         type="number"
-                        className="form-control"
+                        className="form-control inputWidth"
                         id="cardNumber"
                         placeholder="Enter the card number"
                         value={cardNumber}
                         onChange={(e) => setCardNumber(e.target.value)}
-                        style={{width: '50%'}}
                     />
                     {statusCardNumber && <p style={styleStatusCardNumber()}>{statusCardNumber}</p>}
                 </div>
@@ -163,7 +158,7 @@ const FormExample = () => {
                         <li>The PAN (card number) must be between 16 and 19 digits long</li>
                     </ol>
                 </div>
-                <button style={{backgroundColor: '#3f3bc5'}} type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary buttonSubmitColor">Submit</button>
             </form>
             {checkAllFunctions() && (
                 <p className={"resultText"}>Your payment is successful</p>

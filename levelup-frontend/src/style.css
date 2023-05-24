@@ -2,3 +2,19 @@
     color: green;
     font-weight: bold;
 }
+.divCustomContainer{
+    background-color: #eae9f9;
+    border: 10px solid #3f3bc5;
+    border-radius: 25px;
+    padding: 50px;
+}
+.divH1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.inputWidth{
+    width: 50%;
+}
+.buttonSubmitColor{
+    background-color: #3f3bc5;
+}
