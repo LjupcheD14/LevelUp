@@ -166,7 +166,7 @@ const FormExample = () => {
                 <button style={{backgroundColor: '#3f3bc5'}} type="submit" className="btn btn-primary">Submit</button>
             </form>
             {checkAllFunctions() && (
-                <p style={{color: 'green', fontWeight: 'bold'}}>Your payment is successful</p>
+                <p className={"resultText"}>Your payment is successful</p>
             )}
 
         </div>
