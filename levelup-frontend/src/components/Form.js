@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from "axios";
+import handleSubmit from "../handleSubmit";
 
 const FormExample = () => {
     const [date, setDate] = useState('');
@@ -8,64 +8,19 @@ const FormExample = () => {
     const [statusDate, setStatusDate] = useState('');
     const [statusCvv, setStatusCvv] = useState('');
     const [statusCardNumber, setStatusCardNumber] = useState('');
-    const handleSubmit = (e) => {
+
+    const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        // Create an object with the form data
         const formData = {
             date: date,
             cvv: cvv,
             cardNumber: cardNumber
         };
 
-        const formDate = {
-            date: date
-        }
-
-        const formCVV = {
-            cvv: cvv,
-            cardNumber: cardNumber
-        }
-
-        const formCardNumber = {
-            cardNumber: cardNumber
-        }
-
-
-        axios.post('http://localhost:8000/dateSubmit', formDate)
-            .then((response) => {
-                console.log(response.data);
-                // Handle the response from the backend
-                setStatusDate(response.data)
-            })
-            .catch((error) => {
-                console.error('Error submitting form:', error);
-                // Handle the error
-            });
-
-        axios.post('http://localhost:8000/cvvSubmit', formCVV)
-            .then((response) => {
-                console.log(response.data);
-                // Handle the response from the backend
-                setStatusCvv(response.data)
-            })
-            .catch((error) => {
-                console.error('Error submitting form:', error);
-                // Handle the error
-            });
-
-        axios.post('http://localhost:8000/cardNumberSubmit', formCardNumber)
-            .then((response) => {
-                console.log(response.data);
-                // Handle the response from the backend
-                setStatusCardNumber(response.data)
-            })
-            .catch((error) => {
-                console.error('Error submitting form:', error);
-                // Handle the error
-            });
-
+        handleSubmit(formData, setStatusDate, setStatusCvv, setStatusCardNumber);
     };
+
 
     const styleStatusDate = () => {
         if (statusDate === 'Valid date') {
@@ -103,7 +58,7 @@ const FormExample = () => {
     return (
         <div className="container divCustomContainer">
             <h1 className={"divH1"}>LevelUp payment</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleFormSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
                     <input
