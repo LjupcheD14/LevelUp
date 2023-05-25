@@ -11,8 +11,8 @@ app.use(morgan('dev'));
 
 function validateExpiryDate(dateValue, res) {
     if (dateValue === '') {
-        console.log("Invalid date. The expiry date must be provided.");
-        res.status(200).send("Invalid date. The expiry date must be provided.");
+        console.log("The expiry date must be provided.");
+        res.status(200).send("The expiry date must be provided.");
         return false;
     }
 
@@ -39,7 +39,12 @@ app.post('/dateSubmit', (req, res) => {
 
     validateExpiryDate(dateValue, res);
 });
+
 function validateCVV(cvvValue, cardNumberValue, res) {
+    if(cvvValue === ''){
+        console.log("The CVV must be provided.")
+        res.status(200).send("The CVV must be provided.")
+    }
     const isAmerican = cardNumberValue.startsWith("34") || cardNumberValue.startsWith("37");
     const cvvLength = isAmerican ? 4 : 3;
 
@@ -71,6 +76,10 @@ app.post('/cvvSubmit', (req, res) => {
 });
 
 function validateCardNumberLength(cardNumberValue, res) {
+    if(cardNumberValue === ''){
+        console.log("The card number must be provided.")
+        res.status(200).send("The card number must be provided");
+    }
     const cardNumberLength = cardNumberValue.length;
 
     if (cardNumberLength < 16 || cardNumberLength > 19) {
@@ -113,6 +122,11 @@ function validateCardNumberLuhn(cardNumberValue, res) {
         }
 
         sum += digit;
+    }
+
+    if (sum === 0) {
+        console.log(" ")
+        res.status(200).send(" ")
     }
 
     // Check if the sum is divisible by 10
