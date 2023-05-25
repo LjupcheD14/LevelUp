@@ -106,21 +106,22 @@ const FormExample = () => {
                     {statusLuhn && <p className={"fontSans"} style={styleStatusLuhn()}>{statusLuhn}</p>}
                 </div>
                 <div className={"fontSans"}>
-                    <p>For a successful transaction, your payment details must meet the following conditions</p>
+                    <p>For a successful transaction, your payment details must meet the following conditions:</p>
                     <ol>
-                        <li>The expiry date of the credit card (year and month) must be AFTER present time</li>
+                        <li>The expiry date of the credit card (year and month) must be AFTER present time.</li>
                         <li>
                             The CVV (security code) of the credit card must be exactly 3 digits long
                             <ul>
                                 <li>Unless it’s an American Express card, in which case the CVV must be exactly 4 digits
-                                    long
+                                    long.
                                 </li>
                                 <li>American Express are cards whose PAN (card numbers) starts with either “34” or
-                                    “37”
+                                    “37”.
                                 </li>
                             </ul>
                         </li>
-                        <li>The PAN (card number) must be between 16 and 19 digits long</li>
+                        <li>The PAN (card number) must be between 16 and 19 digits long.</li>
+                        <li>The last digit of card number must pass the Luhn algorithm.</li>
                     </ol>
                 </div>
                 <button type="submit" className="btn btn-primary buttonSubmitColor fontSans">Submit</button>
