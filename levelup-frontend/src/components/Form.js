@@ -8,6 +8,7 @@ const FormExample = () => {
     const [statusDate, setStatusDate] = useState('');
     const [statusCvv, setStatusCvv] = useState('');
     const [statusCardNumber, setStatusCardNumber] = useState('');
+    const [statusLuhn, setStatusLuhn] = useState('')
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ const FormExample = () => {
             cardNumber: cardNumber
         };
 
-        handleSubmit(formData, setStatusDate, setStatusCvv, setStatusCardNumber);
+        handleSubmit(formData, setStatusDate, setStatusCvv, setStatusCardNumber, setStatusLuhn);
     };
 
 
@@ -39,7 +40,15 @@ const FormExample = () => {
     }
 
     const styleStatusCardNumber = () => {
-        if (statusCardNumber === 'Valid card number') {
+        if (statusCardNumber === 'Valid card number length') {
+            return {color: 'green'}
+        } else {
+            return {color: 'red'};
+        }
+    }
+
+    const styleStatusLuhn = () => {
+        if (statusLuhn === 'Valid card number according to the Luhn algorithm.') {
             return {color: 'green'}
         } else {
             return {color: 'red'};
@@ -47,7 +56,7 @@ const FormExample = () => {
     }
 
     const checkAllFunctions = () => {
-        if (styleStatusDate().color === 'green' && styleStatusCvv().color === 'green' && styleStatusCardNumber().color === 'green') {
+        if (styleStatusDate().color === 'green' && styleStatusCvv().color === 'green' && styleStatusCardNumber().color === 'green' && styleStatusLuhn().color === 'green') {
             return true;
         } else {
             return false;
@@ -94,6 +103,7 @@ const FormExample = () => {
                         onChange={(e) => setCardNumber(e.target.value)}
                     />
                     {statusCardNumber && <p className={"fontSans"} style={styleStatusCardNumber()}>{statusCardNumber}</p>}
+                    {statusLuhn && <p className={"fontSans"} style={styleStatusLuhn()}>{statusLuhn}</p>}
                 </div>
                 <div className={"fontSans"}>
                     <p>For a successful transaction, your payment details must meet the following conditions</p>

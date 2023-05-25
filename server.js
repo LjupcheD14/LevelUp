@@ -80,8 +80,8 @@ function validateCardNumberLength(cardNumberValue, res) {
     }
 
     // Card number length is valid
-    console.log("Valid card number");
-    res.status(200).send("Valid card number");
+    console.log("Valid card number length");
+    res.status(200).send("Valid card number length");
     return true;
 }
 
@@ -92,6 +92,49 @@ app.post('/cardNumberSubmit', (req, res) => {
 
     validateCardNumberLength(cardNumberValue, res);
 });
+
+function validateCardNumberLuhn(cardNumberValue, res) {
+    // Convert the card number string to an array of digits
+    const cardNumberDigits = Array.from(cardNumberValue, Number);
+
+    // Reverse the array of digits
+    const reversedDigits = cardNumberDigits.reverse();
+
+    // Apply the Luhn's algorithm to validate the card number
+    let sum = 0;
+    for (let i = 0; i < reversedDigits.length; i++) {
+        let digit = reversedDigits[i];
+
+        if (i % 2 === 1) {
+            digit *= 2;
+            if (digit > 9) {
+                digit -= 9;
+            }
+        }
+
+        sum += digit;
+    }
+
+    // Check if the sum is divisible by 10
+    if (sum % 10 === 0) {
+        console.log("Valid card number according to the Luhn algorithm.");
+        res.status(200).send("Valid card number according to the Luhn algorithm.")
+        return true;
+    } else {
+        console.log("Invalid card number according to the Luhn algorithm. The last digit is incorrect.");
+        res.status(200).send("Invalid card number according to the Luhn algorithm. The last digit is incorrect.");
+        return false;
+    }
+}
+
+app.post('/luhnSubmit', (req, res) => {
+    const formData = req.body;
+    console.log(formData);
+    const cardNumberValue = formData.cardNumber;
+
+    validateCardNumberLuhn(cardNumberValue, res);
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

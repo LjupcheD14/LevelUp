@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const handleSubmit = (formData, setStatusDate, setStatusCvv, setStatusCardNumber) => {
+const handleSubmit = (formData, setStatusDate, setStatusCvv, setStatusCardNumber, setStatusLuhn) => {
     const formDate = {
         date: formData.date
     };
@@ -41,6 +41,17 @@ const handleSubmit = (formData, setStatusDate, setStatusCvv, setStatusCardNumber
             console.log(response.data);
             // Handle the response from the backend
             setStatusCardNumber(response.data);
+        })
+        .catch((error) => {
+            console.error('Error submitting form:', error);
+            // Handle the error
+        });
+
+    axios.post('http://localhost:8000/luhnSubmit', formCardNumber)
+        .then((response) => {
+            console.log(response.data);
+            // Handle the response from the backend
+            setStatusLuhn(response.data);
         })
         .catch((error) => {
             console.error('Error submitting form:', error);
