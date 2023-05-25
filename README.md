@@ -25,13 +25,13 @@ To get started with the LevelUp project, follow these steps:
 
 2. Start the backend application:
 
-Navigate to the "levelupproject-backend" directory in your terminal or command prompt.
+Navigate to the "**levelupproject\levelupproject-backend**" directory in your terminal or command prompt.
 Run the command "**node server.js**" to start the backend application.
 The backend application will be running on "localhost:8000".
 
 3. Start the frontend application:
 
-Navigate to the "levelupproject/levelup-frontend" directory in your terminal or command prompt.
+Navigate to the "**levelupproject/levelup-frontend**" directory in your terminal or command prompt.
 Run the command "**npm start**" to start the frontend application.
 The frontend application will be running on "localhost:3000".
 
