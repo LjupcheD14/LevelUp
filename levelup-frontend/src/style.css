@@ -7,13 +7,14 @@
 .divCustomContainer{
     background-color: #eae9f9;
     border: 10px solid #3f3bc5;
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .divH1{
     text-align: center;
     margin-bottom: 10px;
-    /*font-family: 'Open Sans', sans-serif;*/
 }
 .inputWidth{
     width: 50%;
