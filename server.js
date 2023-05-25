@@ -10,6 +10,12 @@ app.use(morgan('dev'));
 
 
 function validateExpiryDate(dateValue, res) {
+    if (dateValue === '') {
+        console.log("Invalid date. The expiry date must be provided.");
+        res.status(200).send("Invalid date. The expiry date must be provided.");
+        return false;
+    }
+
     const currentDate = new Date();
     const expiryDate = new Date(dateValue);
 
